@@ -1,0 +1,11 @@
+{
+    "options": "Options",
+    "lang": "Langues",
+    "tesseract": "Acces Tesseract",
+    "lang_changed": "Le language a ete change en Français",
+    "lang_tooltip": "Change la langue ici",
+    "tesseract_tooltip": "Chemin d'acces a tesseract.exe",
+    "cooScreen": "Coordonées screenshot",
+    "cooScreenModal": "Les coordonées du screen shot sont: ",
+    "cooScreenModalTuto": "Positionnez la souris aux emplacement et attendez le bip"
+}
