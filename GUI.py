@@ -5,6 +5,7 @@ from UI.components.arteList import arteList
 from UI.components.menuBar import menuBar
 
 from UI.popups.editArte import edit_arte_callback
+from UI.refresh import getShouldRefresh, setShouldRefresh
 
 
 from scripts.config import *
@@ -27,7 +28,7 @@ win_width, win_height = 1200, 800
 
 def test_callback(sender):
     print(sender)
-        
+
 dpg.create_context()
 
 with dpg.font_registry():
@@ -38,24 +39,32 @@ with dpg.font_registry():
 dpg.create_viewport(title='Genshin Artefact Maximizer', width=win_width, height=win_height, resizable=False)
 dpg.setup_dearpygui()
 
-with dpg.window(tag="Main"):
-    menuBar()
+def mainWin():
+    with dpg.window(tag="Main"):
+        menuBar()
 
-    dpg.add_text("Optimisateur d'artefacts")
-    with dpg.group(horizontal=True):
-        arteList()
+        dpg.add_text("Optimisateur d'artefacts")
+        with dpg.group(horizontal=True):
+            global arteImgList
+            arteImgList = arteList()
 
-        with dpg.group(width=win_width/2):
-            dpg.add_text("Données")
+            with dpg.group(width=win_width/2):
+                dpg.add_text("Données")
 
-    dpg.bind_font(default_font)
+        dpg.bind_font(default_font)
 
-
+dpg.show_debug()
+mainWin()
 dpg.show_viewport()
 dpg.set_primary_window("Main", True)
 
-while dpg.is_dearpygui_running():
 
+
+while dpg.is_dearpygui_running():
+    if getShouldRefresh():
+        mainWin()
+        dpg.set_primary_window("Main", True)
+        setShouldRefresh(False)
     dpg.render_dearpygui_frame()
 
 

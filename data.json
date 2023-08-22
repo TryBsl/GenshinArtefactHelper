@@ -55,7 +55,7 @@
     },
     {
         "path": "./ressources/images/myArte/arte3.png",
-        "titre": "M\u00e9moires du froid",
+        "titre": "M\u00c3\u00a9moires du froid",
         "type": "Fleur de la vie",
         "mainStat": "PV",
         "mainStatValue": "4.780",
@@ -73,7 +73,7 @@
     },
     {
         "path": "./ressources/images/myArte/arte4.png",
-        "titre": "R\u00e9solution du Briseur de glace",
+        "titre": "R\u00c3\u00a9solution du Briseur de glace",
         "type": "Plume de la mort",
         "mainStat": "ATQ",
         "mainStatValue": "311",
@@ -91,7 +91,7 @@
     },
     {
         "path": "./ressources/images/myArte/arte5.png",
-        "titre": "R\u00e9solution du Briseur de glace",
+        "titre": "R\u00c3\u00a9solution du Briseur de glace",
         "type": "Plume de la mort",
         "mainStat": "ATQ",
         "mainStatValue": "311",
@@ -109,7 +109,7 @@
     },
     {
         "path": "./ressources/images/myArte/arte6.png",
-        "titre": "R\u00e9solution du Briseur de glace",
+        "titre": "R\u00c3\u00a9solution du Briseur de glace",
         "type": "Plume de la mort",
         "mainStat": "ATQ",
         "mainStatValue": "311",
@@ -127,7 +127,7 @@
     },
     {
         "path": "./ressources/images/myArte/arte7.png",
-        "titre": "R\u00e9solution du Briseur de glace",
+        "titre": "R\u00c3\u00a9solution du Briseur de glace",
         "type": "Plume de la mort",
         "mainStat": "ATQ",
         "mainStatValue": "311",
@@ -163,7 +163,7 @@
     },
     {
         "path": "./ressources/images/myArte/arte9.png",
-        "titre": "Fiert\u00e9 du Tisseur de givre",
+        "titre": "Fiert\u00c3\u00a9 du Tisseur de givre",
         "type": "Coupe d'\u00e9onoth\u00e9me",
         "mainStat": "Bonus de DGT G\u00e9o",
         "mainStatValue": "46.6%",

@@ -16,11 +16,11 @@ win_width, win_height = 1200, 800
 
 def file_callback(sender, app_data):
     setTesseractPath(app_data["file_path_name"])
-    f = open("env.json")
+
 
 def menuBar():
 
-    with dpg.file_dialog(directory_selector=False, show=False, callback=file_callback, cancel_callback=lambda: print("Return"), id="file_dialog_id", width=700, height=400, default_path=env["tesseract_path"].rstrip("\\abcdefghijklmnopqrstuvwxyz.exe")):
+    with dpg.file_dialog(directory_selector=False, show=False, callback=file_callback, cancel_callback=lambda: print("Return"), tag="file_dialog", width=700, height=400, default_path=env["tesseract_path"].rstrip("\\abcdefghijklmnopqrstuvwxyz.exe")):
         dpg.add_file_extension("", color=(150, 255, 150, 255))
         dpg.add_file_extension(".exe", color=(0, 255, 255, 255))
 
@@ -33,7 +33,7 @@ def menuBar():
             with dpg.tooltip("lang"):
                 dpg.add_text(lang["lang_tooltip"])
 
-            dpg.add_menu_item(label=lang["tesseract"], tag="tesseract", callback=lambda: dpg.show_item("file_dialog_id"))
+            dpg.add_menu_item(label=lang["tesseract"], tag="tesseract", callback=lambda: dpg.show_item("file_dialog"))
             
             with dpg.tooltip("tesseract"):
                 dpg.add_text(lang["tesseract_tooltip"])

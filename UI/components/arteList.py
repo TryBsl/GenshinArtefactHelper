@@ -2,6 +2,7 @@ import dearpygui.dearpygui as dpg
 import json
 
 from UI.popups.editArte import edit_arte_callback
+from UI.refresh import *
 from scripts.converter import converter
 
 f = open("env.json")
@@ -23,11 +24,14 @@ def test_callback(sender):
 
 def arteItems():
     i = 0
+    arteImgList = []
     with dpg.texture_registry(show=False):
         for arte in artes:
             width, height, channels, data = dpg.load_image(arteTypes[arte["typeId"] - 1]["path"])
             dpg.add_static_texture(width=width, height=height, default_value=data, tag="arteImg" + str(i))
+            arteImgList.append("arteImg" + str(i))
             i += 1
+    setArteListIMG(arteImgList)
 
 def arteList():
      arteItems()
@@ -40,7 +44,7 @@ def arteList():
             dpg.add_table_column(width=win_width/6, width_fixed=True)
             dpg.add_table_column(width=win_width/6, width_fixed=True)
             with dpg.table_row():
-                dpg.add_button(label="Add News", tag="AddNew", width=win_width/6, callback=test_callback)
+                dpg.add_button(label="Add News", tag="AddNew", width=win_width/6, callback=refresh)
                 dpg.add_button(label="ResetArte", tag="RstArte", width=win_width/6, callback=test_callback)
                 dpg.add_button(label="Start Analysis", tag="Analysis", width=win_width/6, callback=converter)
 
