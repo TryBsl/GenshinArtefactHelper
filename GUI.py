@@ -32,10 +32,15 @@ def test_callback(sender):
 dpg.create_context()
 
 with dpg.font_registry():
-    # first argument ids the path to the .ttf or .otf file
-    default_font = dpg.add_font("./ressources/font/zh-cn.ttf", 20)
-    second_font = dpg.add_font("./ressources/font/zh-cn.ttf", 10)
 
+
+    with dpg.font("./ressources/font/zh-cn.ttf", 20) as default_font:
+        dpg.add_font_range(0x00C0, 0x00FF)
+
+    with dpg.font("./ressources/font/zh-cn.ttf", 10) as second_font:
+        dpg.add_font_range(0x00C0, 0x00FF)
+    
+dpg.show_font_manager()
 dpg.create_viewport(title='Genshin Artefact Maximizer', width=win_width, height=win_height, resizable=False)
 dpg.setup_dearpygui()
 
@@ -53,7 +58,7 @@ def mainWin():
 
         dpg.bind_font(default_font)
 
-dpg.show_debug()
+
 mainWin()
 dpg.show_viewport()
 dpg.set_primary_window("Main", True)

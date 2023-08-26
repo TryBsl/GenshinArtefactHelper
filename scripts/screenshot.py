@@ -1,8 +1,11 @@
 import pyautogui
+import dearpygui.dearpygui as dpg
 import time
 import json
 from playsound import playsound
 import pathlib
+
+from scripts.converter import converter
 
 def setMousePosition():
     f = open("env.json")
@@ -12,11 +15,12 @@ def setMousePosition():
     p1 = pyautogui.position()
     x1 = p1.x
     y1 = p1.y
-    time.sleep(3)
     playsound('./ressources/beep.wav')
+    time.sleep(3)
     p2 = pyautogui.position()
     x2 = p2.x - x1
     y2 = p2.y - y1
+    playsound('./ressources/beep.wav')
     env["x_screen1"] = x1
     env["y_screen1"] = y1
     env["x_screen2"] = x2
@@ -25,20 +29,6 @@ def setMousePosition():
     json_object = json.dumps(env, indent=4)
     with open("env.json", "w") as outfile:
         outfile.write(json_object)
-
-
-def addAllScreens(nbArte):
-    f = open("env.json")
-    env = json.load(f)
-    time.sleep(3)
-    playsound('./ressources/beep.wav')
-    for i in range(nbArte):
-
-        time.sleep(1)
-
-        im = pyautogui.screenshot("./screens/screen" + str(i) +".png", region=(env["x_screen1"], env["y_screen1"], env["x_screen2"], env["y_screen2"]))
-
-        playsound('./ressources/beep.wav')
 
 def addScreens(nbArte):
     f = open("env.json")
@@ -52,6 +42,8 @@ def addScreens(nbArte):
 
         time.sleep(1)
 
-        im = pyautogui.screenshot("./screens/screen" + str(i) +".png", region=(1308, 120, 481, 510))
+        im = pyautogui.screenshot("./screens/screen" + str(i) +".png", region=(env["x_screen1"], env["y_screen1"], env["x_screen2"], env["y_screen2"]))
 
         playsound('./ressources/beep.wav')
+        dpg.configure_item("progressScreens", default_value=(i-image_count)/(nbArte), overlay="Arte " + str(i-image_count) + "/" + str(nbArte))
+    converter(image_count)

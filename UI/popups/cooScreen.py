@@ -3,11 +3,22 @@ import json
 
 from scripts.screenshot import setMousePosition
 
-f = open("env.json")
-env = json.load(f)
+def loadData():
+    f = open("env.json")
+    global env
+    env = json.load(f)
 
-f2 = open(env["lang"] + "interface.json")
-lang = json.load(f2)
+    f2 = open(env["lang"] + "interface.json")
+    global lang
+    lang = json.load(f2)
+
+    f3 = open("data.json")
+    global artes
+    artes = json.load(f3)
+
+    f4 = open(env["lang"] + "arteTypes.json")
+    global arteTypes
+    arteTypes = json.load(f4)
 
 win_width, win_height = 1200, 800
 
@@ -17,6 +28,8 @@ def screen_coo_set_callback(sender):
     setMousePosition()
 
 def screen_coo_callback(sender):
+    loadData()
+
     if dpg.does_item_exist("modal_cooScreen"):
         dpg.delete_item("modal_cooScreen")
         dpg.delete_item("tutoCooTag")

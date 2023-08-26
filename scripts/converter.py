@@ -1,4 +1,5 @@
 from PIL import Image, ImageEnhance
+import dearpygui.dearpygui as dpg
 from pytesseract import pytesseract
 import pathlib
 import json
@@ -6,21 +7,29 @@ import re
 import time
 from difflib import SequenceMatcher
 
-f = open("env.json")
-env = json.load(f)
+from UI.refresh import refresh
 
-path_to_tesseract = env["tesseract_path"]
-pytesseract.tesseract_cmd = path_to_tesseract
+def loadData():
+    f = open("env.json")
+    global env
+    env = json.load(f)
 
-f2 = open(env["lang"] + "stats.json")
-lang = json.load(f2)
+    path_to_tesseract = env["tesseract_path"]
+    pytesseract.tesseract_cmd = path_to_tesseract
 
-f3 = open(env["lang"] + "arteTypes.json")
-families = json.load(f3)
+    f2 = open(env["lang"] + "stats.json")
+    global lang
+    lang = json.load(f2)
 
-data_dir = pathlib.Path("./screens")
-screns = list(data_dir.glob('*.png'))
-image_count = len(screns)
+    f3 = open(env["lang"] + "arteTypes.json")
+    global families
+    families = json.load(f3)
+
+    data_dir = pathlib.Path("./screens")
+    global screns
+    screns = list(data_dir.glob('*.png'))
+    global image_count
+    image_count = len(screns)
 
 def arteFamilyFinder(arte):
     best_ratio = 0
@@ -281,11 +290,16 @@ def jsonCleaner(list):
 
 
 
-def converter():
+def converter(start_range = 0):
+    loadData()
 
     list = []
+    if start_range != 0:
+        f3 = open("data.json")
+        list = json.load(f3)
+    
 
-    for i in range(10):
+    for i in range(start_range, image_count):
 
         img = Image.open(str(screns[i]))
 
@@ -365,6 +379,7 @@ def converter():
                     "typeId": "",
                     "txt": txt.replace("\n", " ")})
 
+        dpg.configure_item("progressAnalys", default_value=(i-start_range)/(image_count-start_range), overlay="Arte " + str(i-start_range) + "/" + str(image_count-start_range))
         print(str(i) + "/" + str(image_count))
 
     jsonCleaner(list)
@@ -372,5 +387,7 @@ def converter():
 
     with open("data.json", "w") as outfile:
         outfile.write(json_object)
+
+    refresh()
 
 

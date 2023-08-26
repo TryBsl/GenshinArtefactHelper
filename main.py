@@ -45,7 +45,7 @@ def main():
 
     elif args.rs:
         nbArte = args.rs
-        addAllScreens(nbArte)
+        addScreens(nbArte)
 
     elif args.c:
         converter()

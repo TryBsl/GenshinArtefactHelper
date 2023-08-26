@@ -4,7 +4,7 @@ Cette application a pour objectif de récupérer les informations de vos artefac
 Vos artefactes sont récupérés directement sur le jeu via des screenshots, sont ensuite analysés en utilisant Tesseract (https://github.com/tesseract-ocr/tesseract). Après vérifaction de votre part ils pourront être exploité par l'application pour optimiser les statistiques de vos personnages.
 
 ## Dev Route:
-- Interface de récupération des données                                                                      | 50%
+- Interface de récupération des données                                                                      | 80%
 - Ajout des personnages (skills, constellations, scallings)                                             | 0%
 - Ajout des armes (passifs, raffinements, lvl)                                                                 | 0%
 - Calculateur de dégats sur ennemie imaginaire (0 def, 0 res)                                      | 0%

@@ -1,21 +1,28 @@
 import dearpygui.dearpygui as dpg
 import json
+from UI.popups.addScreens import addScreensModal
 
 from UI.popups.editArte import edit_arte_callback
 from UI.refresh import *
 from scripts.converter import converter
+from scripts.deleteFiles import deleteScreens
 
-f = open("env.json")
-env = json.load(f)
+def loadData():
+    f = open("env.json")
+    global env
+    env = json.load(f)
 
-f2 = open(env["lang"] + "interface.json")
-lang = json.load(f2)
+    f2 = open(env["lang"] + "interface.json")
+    global lang
+    lang = json.load(f2)
 
-f3 = open("data.json")
-artes = json.load(f3)
+    f3 = open("data.json")
+    global artes
+    artes = json.load(f3)
 
-f4 = open(env["lang"] + "arteTypes.json")
-arteTypes = json.load(f4)
+    f4 = open(env["lang"] + "arteTypes.json")
+    global arteTypes
+    arteTypes = json.load(f4)
 
 win_width, win_height = 1200, 800
 
@@ -34,19 +41,18 @@ def arteItems():
     setArteListIMG(arteImgList)
 
 def arteList():
+     loadData()
      arteItems()
 
      with dpg.group(width=win_width/2):
 
         dpg.add_text("Mes artefactes")
         with dpg.table(header_row=False):
-            dpg.add_table_column(width=win_width/6, width_fixed=True)
-            dpg.add_table_column(width=win_width/6, width_fixed=True)
-            dpg.add_table_column(width=win_width/6, width_fixed=True)
+            dpg.add_table_column(width=win_width/4.1, width_fixed=True)
+            dpg.add_table_column(width=win_width/4.1, width_fixed=True)
             with dpg.table_row():
-                dpg.add_button(label="Add News", tag="AddNew", width=win_width/6, callback=refresh)
-                dpg.add_button(label="ResetArte", tag="RstArte", width=win_width/6, callback=test_callback)
-                dpg.add_button(label="Start Analysis", tag="Analysis", width=win_width/6, callback=converter)
+                dpg.add_button(label="Add News", tag="AddNew", width=win_width/4.1, callback=addScreensModal)
+                dpg.add_button(label="ResetArte", tag="RstArte", width=win_width/4.1, callback=deleteScreens)
 
         with dpg.table(header_row=False, height=win_width/2, scrollX=True, borders_innerH=True, borders_outerH=True):
             dpg.add_table_column(width=128, width_fixed=True)
