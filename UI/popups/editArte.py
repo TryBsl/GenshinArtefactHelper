@@ -1,6 +1,8 @@
 import dearpygui.dearpygui as dpg
 import json
 
+from UI.refresh import refresh
+
 def loadData():
     f = open("env.json")
     global env
@@ -20,6 +22,10 @@ def loadData():
 
 win_width, win_height = 1200, 800
 
+def close_callback():
+    dpg.configure_item("modal_edit_arte", show=False) 
+    refresh()
+
 def edit_arte_callback(sender):
     loadData()
     if dpg.does_item_exist("modal_edit_arte"):
@@ -32,6 +38,11 @@ def edit_arte_callback(sender):
 
     def edit_arte_value_callback(sender, app_data):
         currArte[sender] = app_data
+        artes[idCurrArte] = currArte
+        json_object = json.dumps(artes, indent=4)
+
+        with open("data.json", "w") as outfile:
+            outfile.write(json_object)
 
     with dpg.window(label="Edit_Arte", modal=True, show=True, tag="modal_edit_arte", no_title_bar=True, pos=[win_width/4, win_height/4], width=win_width/2, height=win_height/2):
         dpg.add_text("Edit artefact")
@@ -82,4 +93,4 @@ def edit_arte_callback(sender):
         dpg.add_separator()
         with dpg.group(horizontal=True):
 
-            dpg.add_button(label="Close", callback=lambda: dpg.configure_item("modal_edit_arte", show=False))
+            dpg.add_button(label="Close", callback=close_callback)

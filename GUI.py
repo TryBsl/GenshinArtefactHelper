@@ -40,7 +40,7 @@ with dpg.font_registry():
     with dpg.font("./ressources/font/zh-cn.ttf", 10) as second_font:
         dpg.add_font_range(0x00C0, 0x00FF)
     
-dpg.show_font_manager()
+
 dpg.create_viewport(title='Genshin Artefact Maximizer', width=win_width, height=win_height, resizable=False)
 dpg.setup_dearpygui()
 

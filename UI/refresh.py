@@ -21,4 +21,3 @@ def refresh():
         dpg.delete_item(tag)
     global shouldRefresh
     shouldRefresh = True
-

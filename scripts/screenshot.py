@@ -45,5 +45,5 @@ def addScreens(nbArte):
         im = pyautogui.screenshot("./screens/screen" + str(i) +".png", region=(env["x_screen1"], env["y_screen1"], env["x_screen2"], env["y_screen2"]))
 
         playsound('./ressources/beep.wav')
-        dpg.configure_item("progressScreens", default_value=(i-image_count)/(nbArte), overlay="Arte " + str(i-image_count) + "/" + str(nbArte))
+        dpg.configure_item("progressScreens", default_value=(i-image_count+1)/(nbArte), overlay="Arte " + str(i-image_count+1) + "/" + str(nbArte))
     converter(image_count)

@@ -379,7 +379,7 @@ def converter(start_range = 0):
                     "typeId": "",
                     "txt": txt.replace("\n", " ")})
 
-        dpg.configure_item("progressAnalys", default_value=(i-start_range)/(image_count-start_range), overlay="Arte " + str(i-start_range) + "/" + str(image_count-start_range))
+        dpg.configure_item("progressAnalys", default_value=(i-start_range+1)/(image_count-start_range), overlay="Arte " + str(i-start_range+1) + "/" + str(image_count-start_range))
         print(str(i) + "/" + str(image_count))
 
     jsonCleaner(list)
